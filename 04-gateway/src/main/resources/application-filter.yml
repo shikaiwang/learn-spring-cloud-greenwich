@@ -1,0 +1,62 @@
+# 过滤器配置
+#GatewayFilter : 需要通过spring.cloud.routes.filters 配置在具体路由下，只作用在当前路由上或通过spring.cloud.default-filters配置在全局，作用在所有路由上
+
+#GlobalFilter : 全局过滤器，不需要在配置文件中配置，作用在所有的路由上，最终通过GatewayFilterAdapter包装成GatewayFilterChain可识别的过滤器，它为请求业务以及路由的URI转换为真实业务服务的请求地址的核心过滤器，不需要配置，系统初始化时加载，并作用在每个路由上。
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: add_request_header_route
+#          uri: http://httpbin.org
+#          # 1.配置过滤器 AddRequestHeader过滤器工厂会在请求头加上一对请求头，名称为X-Request-Foo，值为Bar
+#          filters:
+#            - AddRequestHeader=X-Request-Foo, Bar
+#          predicates:
+#            - Path=/*
+
+#---
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: rewritepath_route
+#          uri: https://www.github.com
+#          predicates:
+#            - Path=/rewrite/**
+##          1.配置过滤器 重写路径localhost:9401/write/AkiraLiu39 -> https://www.github.com/AkiraLiu39
+#          filters:
+#            - RewritePath=/rewrite/(?<segment>.*), /$\{segment}
+#---
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: custom_route
+#          uri: http://httpbin.org
+#          # 3.自定义过滤器工厂 CustomGatewayFilterFactory
+#          filters:
+#            - Custom=true
+#          predicates:
+#            - Path=/*
+#---
+# 6.限流过滤器 令牌桶方式
+# 令牌桶算法是对漏桶算法的一种改进，桶算法能够限制请求调用的速率，而令牌桶算法能够在限制调用的平均速率的同时还允许一定程度的突发调用。在令牌桶算法中，存在一个桶，用来存放固定数量的令牌。算法中存在一种机制，以一定的速率往桶中放令牌。每次请求调用需要先获取令牌，只有拿到令牌，才有机会继续执行，否则选择选择等待可用的令牌、或者直接拒绝。放令牌这个动作是持续不断的进行，如果桶中令牌数达到上限，就丢弃令牌，所以就存在这种情况，桶中一直有大量的可用令牌，这时进来的请求就可以直接拿到令牌执行，比如设置qps为100，那么限流器初始化完成一秒后，桶中就已经有100个令牌了，这时服务还没完全启动好，等启动完成对外提供服务时，该限流器可以抵挡瞬时的100个请求。所以，只有桶中没有令牌时，请求才会进行等待，最后相当于以一定的速率执行。
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: limit_route
+          uri: http://httpbin.org
+          predicates:
+            - Path=/get
+          filters:
+            - name: RequestRateLimiter
+              args:
+#                用于限流的键的解析器的 Bean 对象的名字。它使用 SpEL 表达式根据#{@beanName}从 Spring 容器中获取 Bean 对象。
+                key-resolver: '#{@hostAddrKeyResolver}'
+#                令牌桶每秒填充平均速率
+                redis-rate-limiter.replenishRate: 1
+#                令牌桶总容量
+                redis-rate-limiter.burstCapacity: 3
+  redis:
+    port: 16379
