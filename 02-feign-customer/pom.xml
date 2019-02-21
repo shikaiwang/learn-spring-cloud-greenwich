@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>feign-customer</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${project.version}</version>
     <name>02-Feign消费者</name>
 
     <dependencies>
@@ -30,6 +30,35 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
+        <!-- 断路器 dashboard 依赖以下3个-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.akira.learn</groupId>
+            <artifactId>feign-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

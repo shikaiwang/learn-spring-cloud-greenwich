@@ -1,6 +1,5 @@
 package com.akira.learn.getway;
 
-import com.akira.learn.getway.filter.TokenFilter;
 import com.akira.learn.getway.filterFactory.CustomGatewayFilterFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,10 +11,10 @@ import reactor.core.publisher.Mono;
 
 @SpringBootApplication
 @RestController
-public class GetWayApplication {
+public class GateWayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GetWayApplication.class, args);
+        SpringApplication.run(GateWayApplication.class, args);
     }
 
 //    2.代码实现路由

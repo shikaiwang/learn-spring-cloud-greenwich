@@ -1,0 +1,31 @@
+server:
+  port: 9501
+
+spring:
+  application:
+    name: service-turbine
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9001/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+
+turbine:
+  app-config: service-hello-eureka,feign-customer
+  aggregator:
+    clusterConfig: default
+  clusterNameExpression: new String("default")
+  combine-host-port: true
