@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: eureka-server
+  cloud:
+    config:
+      uri: http://localhost:9301
+      #是否允许远程配置，默认true
+      enabled: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

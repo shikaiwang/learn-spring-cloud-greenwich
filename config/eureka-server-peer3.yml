@@ -1,22 +1,21 @@
 server:
-  port: 9002
+  port: 9004
 spring:
   application:
   name: eureka-server
 
 eureka:
   instance:
-    hostname: peer1
+    hostname: peer3
     prefer-ip-address: true
     preferIpAddress: true
   client:
     fetchRegistry: true
     registerWithEureka: true
     serviceUrl:
-#     想peer2注册
-      defaultZone: http://127.0.0.1:9003/eureka
+#      向peer1,peer2注册
+      defaultZone: http://127.0.0.1:9002/eureka,http://127.0.0.1:9002/eureka
 
   server:
     waitTimeInMsWhenSyncEmpty: 0
-    # 为了测试关闭自我检测
     enableSelfPreservation: false

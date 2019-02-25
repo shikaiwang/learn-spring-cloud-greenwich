@@ -4,7 +4,6 @@ spring:
   application:
   name: eureka-server
 
-# \u5411peer1\u6CE8\u518C\u81EA\u8EAB \u4E0Epeer1\u5F62\u6210"peer"
 eureka:
   instance:
     hostname: peer2
@@ -18,5 +17,4 @@ eureka:
 
   server:
     waitTimeInMsWhenSyncEmpty: 0
-    # \u81EA\u6211\u6559\u7814\uFF0C\u9ED8\u8BA4\u5F00\u542F\uFF0C\u4E3A\u4E86\u6D4B\u8BD5\u5173\u95ED
     enableSelfPreservation: false
