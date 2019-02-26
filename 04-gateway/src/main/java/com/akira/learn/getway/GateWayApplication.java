@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
@@ -99,6 +100,11 @@ public class GateWayApplication {
     @Bean
     public KeyResolver bizKeyResolver() {
         return exchange -> Mono.just(exchange.getRequest().getQueryParams().getFirst("biz"));
+    }
+
+    @RequestMapping("/fallback")
+    public String fallback() {
+        return "你已经被限流啦！";
     }
 
 

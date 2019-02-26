@@ -11,7 +11,7 @@
 
     <artifactId>turbine-learn</artifactId>
     <version>${project.version}</version>
-    <name>turbine hystrix聚合监控</name>
+    <name>05-turbine hystrix聚合监控</name>
 
     <dependencies>
         <dependency>

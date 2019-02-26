@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: gw-gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+# discovery.locator.enable=true 配置会让 spring cloud gateway自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务
+          enabled: false
+          lowerCaseServiceId: true
+# 手动配置，将 discovery.locator.enable=false 否则会多一个自动配置的路由路径
+      routes:
+        - id: feign-customer
+          uri: lb://feign-customer
+          predicates:
+            - Path=/admin/**
+#         转发的路径去掉第一级目录 /admin/
+          filters:
+#            - GwSwaggerHeader
+            - StripPrefix=1
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka/
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: debug

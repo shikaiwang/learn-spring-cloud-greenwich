@@ -58,5 +58,9 @@ spring:
                 redis-rate-limiter.replenishRate: 1
 #                令牌桶总容量
                 redis-rate-limiter.burstCapacity: 3
+            - name: Hystrix
+              args:
+                name: fallbackcmd
+                fallbackUri: forward:/fallback
   redis:
     port: 16379
