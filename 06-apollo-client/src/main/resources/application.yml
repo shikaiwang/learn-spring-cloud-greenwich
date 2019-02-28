@@ -13,4 +13,4 @@ apollo:
   bootstrap:
     enabled: true
     namespaces: application
-  meta: http://localhost:8080
+  meta: http://10.100.5.123:9100

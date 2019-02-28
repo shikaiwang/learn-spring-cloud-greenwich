@@ -1,7 +1,10 @@
-package com.akira.learn.sc.gw.feign.config;
+package com.akira.learn.sc.gw.eureka.config;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -20,17 +23,16 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.akira.learn.sc.gw.feign.controller"))
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("title测试")
-                .description("description测试")
-//                .termsOfServiceUrl("")
-                .contact(new Contact("contactName", "www.test.con", "test@test.com"))
+                .title("title测试2")
+                .description("description测试2")
+                .contact(new Contact("contactName2", "www.test2.con", "test@test2.com"))
                 .version("1.0")
                 .build();
     }

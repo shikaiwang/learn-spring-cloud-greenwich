@@ -1,4 +1,4 @@
-package com.akira.learn.sc.gw.eureka;
+package com.akira.learn.sc.gw.eureka.controller;
 
 import com.akira.learn.feign.api.RemoteAPI;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -18,6 +18,14 @@ spring:
           filters:
 #            - GwSwaggerHeader
             - StripPrefix=1
+        - id: euraka-provider
+          uri: lb://service-hello-eureka
+          predicates:
+            - Path=/hhe/**
+          #         转发的路径去掉第一级目录 /admin/
+          filters:
+            #            - GwSwaggerHeader
+            - StripPrefix=1
 eureka:
   client:
     service-url:

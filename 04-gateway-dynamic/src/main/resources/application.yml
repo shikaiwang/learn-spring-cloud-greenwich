@@ -1,0 +1,19 @@
+server:
+  port: 9402
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: add_request_header_route
+          uri: http://httpbin.org
+          # 1.配置过滤器 AddRequestHeader过滤器工厂会在请求头加上一对请求头，名称为X-Request-Foo，值为Bar
+          filters:
+            - AddRequestHeader=X-Request-Foo, Bar
+          predicates:
+            - Path=/*
+
+apollo:
+  bootstrap:
+    enabled: true
+    namespaces: TEST1.gateway-config
+  meta: http://10.100.5.123:9100
