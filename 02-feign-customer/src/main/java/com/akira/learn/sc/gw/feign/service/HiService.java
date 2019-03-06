@@ -3,6 +3,8 @@ package com.akira.learn.sc.gw.feign.service;
 import com.akira.learn.sc.gw.feign.service.fallback.HiServiceFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -21,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 要不就用SpringBoot 2.1.x的新属性 spring.main.allow-bean-definition-overriding=true，但是配置到配置中心的话，无效
  * 要不就所有来自一个服务的接口全部由一个骚东西来继承
  */
-@FeignClient(value = "service-hello-eureka", contextId = "hiService", fallbackFactory = HiServiceFallbackFactory.class)
+@FeignClient(value = "service-hello-eureka", contextId = "hiService")
 public interface HiService {
 
     @GetMapping("/hi")

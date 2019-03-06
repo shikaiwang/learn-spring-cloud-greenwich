@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.akira.learn.sc.gw.security.core.config.CommonConfiguration

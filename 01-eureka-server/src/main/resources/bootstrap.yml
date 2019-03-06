@@ -6,6 +6,11 @@ spring:
       uri: http://localhost:9301
       #是否允许远程配置，默认true
       enabled: false
+  security:
+    user:
+      name: wxuser
+      password: 123456
+
 management:
   endpoints:
     web:

@@ -5,7 +5,9 @@ import com.akira.learn.feign.vo.RemoteAPIParam;
 import com.akira.learn.feign.vo.RemoteAPIResult;
 import com.akira.learn.sc.gw.feign.service.HiService;
 import com.akira.learn.sc.gw.feign.service.TestService;
+import com.akira.learn.sc.gw.feign.service.TestService2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +22,9 @@ public class HiController {
 
     @Autowired
     private TestService testService;
+
+    @Autowired
+    private TestService2 testService2;
 
     @GetMapping("/hi")
     public String sayHi(@RequestParam("name") String name) {
@@ -47,6 +52,16 @@ public class HiController {
     public RemoteAPIResult testQueryParm() {
         RemoteAPIParam param = new RemoteAPIParam();
         param.setName("中文");
+        param.setNumber(1);
+        //get 暂不支持对象嵌套，因为无法设置QueryMapEncoder,默认的是 FieldQueryMapEncoder
+//        InnerObject innerObject = new InnerObject();
+//        innerObject.setInnerName("inner");
+//        param.setInnerObject(innerObject);
         return testService.testGetQueryParam(param);
+    }
+
+    @GetMapping("/testDate")
+    public Date testDate(@RequestParam("date") Date date) {
+        return testService2.dateTest(date);
     }
 }
