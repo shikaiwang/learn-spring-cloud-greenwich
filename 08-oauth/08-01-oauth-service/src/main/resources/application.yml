@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:13306/cloud_oauth?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: root
+  security:
+    user:
+      password: 123456
+      name: wxuser
+  redis:
+    host: localhost
+    port: 16379
+    password:
+    timeout: 10s
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-active: 8
+        max-wait: -1ms
+
+access:
+  token:
+    store:
+      type: redis
