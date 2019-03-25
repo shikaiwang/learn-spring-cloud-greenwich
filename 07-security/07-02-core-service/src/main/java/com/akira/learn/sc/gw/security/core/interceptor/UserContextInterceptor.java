@@ -1,12 +1,11 @@
 package com.akira.learn.sc.gw.security.core.interceptor;
 
+import com.akira.learn.sc.gw.security.core.util.UserPermissionUtil;
+import com.akira.learn.sc.gw.security.core.vo.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import com.akira.learn.sc.gw.security.core.util.UserPermissionUtil;
-import com.akira.learn.sc.gw.security.core.vo.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

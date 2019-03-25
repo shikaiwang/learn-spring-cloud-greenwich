@@ -5,6 +5,8 @@ services:
     container_name: euerka1
     ports:
       - 9002:9002
+    expose:
+      - 9002
     environment:
       - SPRING_PROFILES_ACTIVE=peer1
     networks:
@@ -16,6 +18,8 @@ services:
     container_name: euerka2
     ports:
       - 9003:9003
+    expose:
+      - 9003
     environment:
       - SPRING_PROFILES_ACTIVE=peer2
     networks:

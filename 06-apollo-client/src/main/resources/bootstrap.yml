@@ -1,0 +1,4 @@
+spring:
+  cloud:
+    config:
+      fallback-location: /Users/akiraliu/Workspace/log/dev
