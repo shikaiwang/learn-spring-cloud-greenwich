@@ -20,6 +20,7 @@
         <module>04-gateway-dynamic</module>
         <module>07-security</module>
         <module>08-oauth</module>
+        <module>09-monitor</module>
     </modules>
     <name>SpringCloud.Greenwich学习</name>
     <packaging>pom</packaging>

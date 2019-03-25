@@ -1,0 +1,22 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:9901
+        instance:
+          metadata:
+            user.name: user-admin
+            user.password: admin_pass
+  application:
+    name: monitor-client
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://wxuser:123456@localhost:9001/eureka
